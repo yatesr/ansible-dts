@@ -1,0 +1,28 @@
+# Check to see if dts is installed
+- name: Is dts installed
+  stat: path={{dts_install_dir}}/bin
+  register: dts_installed
+  changed_when: false
+
+- name: Create dts dir
+  file: path={{dts_install_dir}}
+        state=directory
+
+- name: Download dts binary
+  get_url: dest=/tmp/
+           url="{{dts_download_url}}"
+  when: dts_installed.stat.isdir is not defined
+           
+- name: Extract dts binary
+  unarchive: copy=no
+             dest={{dts_install_dir}}
+             src="/tmp/dts-linux_{{dts_version_full}}.tar.gz"
+  when: dts_installed.stat.isdir is not defined
+
+- name: Make script executable
+  file: path={{dts_install_dir}}/bin/makeScriptsExecutable.sh
+        mode=0755
+  notify: chmodx scripts
+
+- meta: flush_handlers
+

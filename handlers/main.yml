@@ -1,0 +1,3 @@
+---
+- name: chmodx scripts
+  shell: chdir={{dts_install_dir}}/bin ./makeScriptsExecutable.sh

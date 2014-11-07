@@ -1,0 +1,16 @@
+# Clean up before redploying
+
+- name: Stop Jboss service
+  service: name={{dts_jboss_service}} state=stopped
+# Ignore errors incase this is the first deploy
+  ignore_errors: yes
+
+- name: Delete old dts deployments
+  file: path={{dts_jboss_install_dir}}/standalone/deployements/dtsjboss.ear
+        state=absent
+
+- name: Drop dts database
+  mysql_db: name=dts4
+            state=absent
+            login_user=root
+            login_password={{dts_mysql_root_password}}

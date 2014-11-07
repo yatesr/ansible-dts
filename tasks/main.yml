@@ -1,0 +1,19 @@
+---
+# Cleanup if doing re/deploy
+- include: cleanup.yml
+  when: dts_deploy
+
+# Install dependencies, mysql, jboss
+- include: install.yml
+
+# Install dts from binary 
+- include: binary.yml
+
+# Install dts from source/compiled ear. Replace binary ear with compiled one.
+- include: deploy.yml
+  when: dts_deploy
+
+# Configure all the things,
+- include: config.yml
+
+
