@@ -2,7 +2,7 @@
 # User and db creation done in mysql role
 - name: Add lower_case_table_names to my.cnf
   lineinfile: backup=yes
-              dest=/etc/mysql/my.cnf # Need to change this to var based on OS.
+              dest=/etc/mysql/my.cnf 
               insertafter='\[mysqld\]'
               line="lower_case_table_names = 1"
               regexp='lower_case_name_tables'
