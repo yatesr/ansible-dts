@@ -1,6 +1,13 @@
 # DB config
 # User and db creation done in mysql role
-
+- name: Add lower_case_table_names to my.cnf
+  lineinfile: backup=yes
+              dest=/etc/mysql/my.cnf # Need to change this to var based on OS.
+              insertafter='\[mysqld\]'
+              line="lower_case_table_names = 1"
+              regexp='lower_case_name_tables'
+              state=present
+              
 - name: Check if mysql tables are already created
   shell: 'mysql -u dts4user -p{{dts_mysql_password}} dts4 --execute="show tables"'
   register: dts4_db_tables
