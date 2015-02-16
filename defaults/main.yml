@@ -22,7 +22,7 @@ apelon_admin_password: apelonadmin
 
 
 # Version of DTS 4 to download
-dts_version_full: "4.1.0.377"
-dts_version_short: "4.1"
+dts_version_full: "4.2.0.404"
+dts_version_short: "4.2"
 dts_download_url: "http://www.apelondts.org/Portals/0/Downloads/DTS%20{{dts_version_short}}/dts-linux_{{dts_version_full}}.tar.gz"
 
