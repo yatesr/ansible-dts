@@ -1,3 +1,6 @@
 ---
 - name: chmodx scripts
   shell: chdir={{dts_install_dir}}/bin ./makeScriptsExecutable.sh
+
+- name: restart mysql
+  service: name=mysql state=restarted

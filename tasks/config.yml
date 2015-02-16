@@ -7,6 +7,9 @@
               line="lower_case_table_names = 1"
               regexp='lower_case_name_tables'
               state=present
+  notify: restart mysql
+
+- meta: flush_handlers
               
 - name: Check if mysql tables are already created
   shell: 'mysql -u dts4user -p{{dts_mysql_password}} dts4 --execute="show tables"'
